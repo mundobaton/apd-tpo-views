@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/apd-tpo-views.iml" filepath="$PROJECT_DIR$/.idea/modules/apd-tpo-views.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/apd-tpo-views_main.iml" filepath="$PROJECT_DIR$/.idea/modules/apd-tpo-views_main.iml" group="apd-tpo-views" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/apd-tpo-views_test.iml" filepath="$PROJECT_DIR$/.idea/modules/apd-tpo-views_test.iml" group="apd-tpo-views" />
+    </modules>
+  </component>
+</project>
