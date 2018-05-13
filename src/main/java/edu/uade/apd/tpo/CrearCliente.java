@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import edu.uade.apd.tpo.repository.AdministracionDelegate;
@@ -102,7 +103,7 @@ public class CrearCliente {
 		lblPasswd.setBounds(350, 120, 300, 16);
 		frmCrearCliente.getContentPane().add(lblPasswd);
 
-		txtPasswd = new JTextField();
+		txtPasswd = new JPasswordField();
 		txtPasswd.setBounds(350, 142, 300, 26);
 		frmCrearCliente.getContentPane().add(txtPasswd);
 		txtPasswd.setColumns(10);
@@ -231,6 +232,13 @@ public class CrearCliente {
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(408, 570, 117, 29);
 		frmCrearCliente.getContentPane().add(btnCancelar);
+		
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO fix del flujo de navegacion
+				frmCrearCliente.dispose();
+			}
+		});
 	}
 
 	private void guardar() {
