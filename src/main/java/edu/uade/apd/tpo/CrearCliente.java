@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 
 import edu.uade.apd.tpo.repository.AdministracionDelegate;
 import edu.uade.apd.tpo.repository.stub.CondIvaStub;
+import edu.uade.apd.tpo.repository.stub.ZonaEnvioStub;
 
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
@@ -242,19 +243,7 @@ public class CrearCliente {
 			Long cuil = Long.parseLong(txtCuil.getText());
 			String telefono = txtTelefono.getText();
 			String iva = comboCondIVA.getSelectedItem().toString();
-			CondIvaStub condIva = null;
-
-			switch (iva) {
-			case "Responsable Inscripto":
-				condIva = CondIvaStub.RESP_INSCRIPTO;
-				break;
-			case "Exento":
-				condIva = CondIvaStub.EXENTO;
-				break;
-			case "Consumidor Final":
-				condIva = CondIvaStub.CONS_FINAL;
-				break;
-			}
+			CondIvaStub condIva = CondIvaStub.getCondIvaFromValue(iva);
 
 			String calle = txtCalle.getText();
 			int numero = Integer.parseInt(txtNumero.getText());
@@ -264,8 +253,10 @@ public class CrearCliente {
 			Float saldo = Float.parseFloat(txtSaldo.getText());
 			Float limiteCredito = Float.parseFloat(txtLimiteCredito.getText());
 
+			//TODO Falta agregar la zona a la ventana y pasarsela. Por ahora le mando cualquiera para cerrar la integracion
+
 			adm.crearCliente(email, password, nombre, cuil, telefono, condIva, calle, numero, codPostal, localidad,
-					provincia, saldo, limiteCredito);
+					provincia, ZonaEnvioStub.CABA, saldo, limiteCredito);
 
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
