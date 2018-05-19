@@ -9,8 +9,6 @@ import javax.swing.JTextField;
 
 import edu.uade.apd.tpo.repository.AdministracionDelegate;
 import edu.uade.apd.tpo.repository.stub.CondIvaStub;
-import edu.uade.apd.tpo.repository.stub.ZonaEnvioStub;
-
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
 import java.awt.Font;
@@ -21,6 +19,7 @@ import javax.swing.JButton;
 
 public class CrearCliente {
 
+	private static final float ZonaEnvioStub = 0;
 	private JFrame frmCrearCliente;
 	private JTextField txtNombreCompleto;
 	private JTextField txtEmail;
@@ -264,7 +263,7 @@ public class CrearCliente {
 			//TODO Falta agregar la zona a la ventana y pasarsela. Por ahora le mando cualquiera para cerrar la integracion
 
 			adm.crearCliente(email, password, nombre, cuil, telefono, condIva, calle, numero, codPostal, localidad,
-					provincia, ZonaEnvioStub.CABA, saldo, limiteCredito);
+					provincia, saldo, limiteCredito);
 
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
