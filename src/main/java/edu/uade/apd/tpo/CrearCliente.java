@@ -263,7 +263,7 @@ public class CrearCliente {
 			//TODO Falta agregar la zona a la ventana y pasarsela. Por ahora le mando cualquiera para cerrar la integracion
 
 			adm.crearCliente(email, password, nombre, cuil, telefono, condIva, calle, numero, codPostal, localidad,
-					provincia, saldo, limiteCredito);
+					provincia, null, saldo, limiteCredito);
 
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
