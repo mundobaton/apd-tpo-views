@@ -45,6 +45,7 @@ public class CrearCliente {
 	private JLabel lblLmiteDeCrdito;
 	private JTextField txtLimiteCredito;
 	private JButton btnCancelar;
+	protected Object frmVerDetalleCliente;
 
 	/**
 	 * Launch the application.

@@ -98,8 +98,8 @@ public class ListarClientes {
 				String id = c.getId().toString();
 				String cuil = c.getCuil().toString();
 				String nombre = c.getNombre();
-				String saldo = c.getCuentaCorriente().getSaldo().toString();
-				String limite = c.getCuentaCorriente().getLimiteCredito().toString();
+				float saldo = c.getCuentaCorriente().getSaldo();
+				float limite = c.getCuentaCorriente().getLimiteCredito();
 				model.addRow(new Object[] {id, cuil, nombre, "$"+saldo, "$"+limite});
 			}
 		} catch (Exception e) {

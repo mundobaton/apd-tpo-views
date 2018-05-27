@@ -61,7 +61,7 @@ public class ListarPedidosPendientes {
 		frmListarPedidosPendientes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmListarPedidosPendientes.getContentPane().setLayout(null);
 
-		JLabel lblListarPedidosPendientes = new JLabel("Listar Pedidos pendintes");
+		JLabel lblListarPedidosPendientes = new JLabel("Listar Pedidos pendientes");
 		lblListarPedidosPendientes.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblListarPedidosPendientes.setBounds(6, 20, 648, 30);
 		frmListarPedidosPendientes.getContentPane().add(lblListarPedidosPendientes);

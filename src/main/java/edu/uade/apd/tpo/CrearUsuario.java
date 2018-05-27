@@ -123,7 +123,6 @@ public class CrearUsuario {
 			String password = txtPasswd.getText();
 			String rolString = comboRol.getSelectedItem().toString();
 			RolStub rol = RolStub.getRolFromValue(rolString);
-
 			adm.crearUsuario(email, password, rol);
 
 		} catch (Exception e1) {
