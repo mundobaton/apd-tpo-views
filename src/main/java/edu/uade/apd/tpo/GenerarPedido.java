@@ -193,7 +193,7 @@ public class GenerarPedido {
 			String localidad = txtLocalidad.getText();
 			String provincia = comboProvincia.getSelectedItem().toString();
 			String zona = comboZona.getSelectedItem().toString();
-			ZonaStub zonaS = ZonaStub.getZonaFromValue(zona);
+			ZonaStub zonaS = ZonaStub.valueOf(zona);
 			
 			adm.crearPedido(cuil, calle, numero, codPostal, localidad, provincia, zonaS);
 		

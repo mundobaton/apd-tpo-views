@@ -276,7 +276,7 @@ public class CrearCliente {
 			Float saldo = Float.parseFloat(txtSaldo.getText());
 			Float limiteCredito = Float.parseFloat(txtLimiteCredito.getText());
 			String zona = comboZona.getSelectedItem().toString();
-			ZonaStub zonaS = ZonaStub.getZonaFromValue(zona);
+			ZonaStub zonaS = ZonaStub.valueOf(zona);
 
 	adm.crearCliente(cuil, email, password, nombre, telefono, calle, numero, codPostal, localidad, provincia, condIva, zonaS, saldo, limiteCredito);
 			
