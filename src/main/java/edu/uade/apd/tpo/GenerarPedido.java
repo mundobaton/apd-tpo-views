@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 import edu.uade.apd.tpo.repository.AdministracionDelegate;
 import edu.uade.apd.tpo.repository.stub.CondIvaStub;
-import edu.uade.apd.tpo.repository.stub.ZonaEnvioStub;
+import edu.uade.apd.tpo.repository.stub.ZonaStub;
 
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
@@ -23,7 +23,7 @@ import javax.swing.JButton;
 public class GenerarPedido {
 
 	private JFrame frmGenerarPedido;
-	private JTextField txtEmail;
+	private JTextField txtCuil;
 	private JLabel lblCalle;
 	private JTextField txtCalle;
 	private JTextField txtNumero;
@@ -80,14 +80,14 @@ public class GenerarPedido {
 		lblDondeTeEnviamos.setBounds(6, 37, 648, 30);
 		frmGenerarPedido.getContentPane().add(lblDondeTeEnviamos);
 
-		JLabel lblEmail = new JLabel("Correo electrónico:");
+		JLabel lblEmail = new JLabel("Cuil:");
 		lblEmail.setBounds(6, 95, 300, 16);
 		frmGenerarPedido.getContentPane().add(lblEmail);
 
-		txtEmail = new JTextField();
-		txtEmail.setBounds(6, 123, 300, 26);
-		frmGenerarPedido.getContentPane().add(txtEmail);
-		txtEmail.setColumns(10);
+		txtCuil = new JTextField();
+		txtCuil.setBounds(6, 123, 300, 26);
+		frmGenerarPedido.getContentPane().add(txtCuil);
+		txtCuil.setColumns(10);
 
 
 		lblCalle = new JLabel("Calle:");
@@ -183,18 +183,20 @@ public class GenerarPedido {
 	private void guardar() {
 		try {
 			AdministracionDelegate adm = AdministracionDelegate.getInstance();
-
-			String email = txtEmail.getText();
+            
+			String cuilString = txtCuil.getText();
+			long cuil = Long.parseLong(cuilString);
 			String calle = txtCalle.getText();
-			int numero = Integer.parseInt(txtNumero.getText());
+			String numeroString = txtNumero.getText();
+			long numero = Long.parseLong(numeroString);
 			String codPostal = txtCodigoPostal.getText();
 			String localidad = txtLocalidad.getText();
 			String provincia = comboProvincia.getSelectedItem().toString();
 			String zona = comboZona.getSelectedItem().toString();
-			ZonaEnvioStub zonaS = ZonaEnvioStub.getZonaFromValue(zona);
-
-			adm.generarPedido(email, calle, numero, codPostal, localidad, provincia , zonaS);
-
+			ZonaStub zonaS = ZonaStub.getZonaFromValue(zona);
+			
+			adm.crearPedido(cuil, calle, numero, codPostal, localidad, provincia, zonaS);
+		
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

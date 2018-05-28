@@ -93,6 +93,7 @@ public class ListarClientes {
 	private void loadClientes() {
 		try {
 			List<ClienteStub> clientes = AdministracionDelegate.getInstance().getClientes();
+			
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			for(ClienteStub c : clientes) {
 				String id = c.getId().toString();

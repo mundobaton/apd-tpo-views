@@ -101,8 +101,7 @@ public class ListarPedidosPendientes {
 			for (PedidoStub p : pedidosPendientes) {
 				String id = p.getId().toString();
 				Date fechaPedido = p.getFechaPedido();
-				ClienteStub cliente = p.getCliente();
-				model.addRow(new Object[] { id, fechaPedido, cliente });
+				model.addRow(new Object[] { id, fechaPedido});
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

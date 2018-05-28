@@ -9,6 +9,8 @@ import javax.swing.JTextField;
 
 import edu.uade.apd.tpo.repository.AdministracionDelegate;
 import edu.uade.apd.tpo.repository.stub.CondIvaStub;
+import edu.uade.apd.tpo.repository.stub.ZonaStub;
+
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
 import java.awt.Font;
@@ -46,6 +48,7 @@ public class CrearCliente {
 	private JTextField txtLimiteCredito;
 	private JButton btnCancelar;
 	protected Object frmVerDetalleCliente;
+	private JComboBox comboZona;
 
 	/**
 	 * Launch the application.
@@ -195,6 +198,16 @@ public class CrearCliente {
 		separator_1 = new JSeparator();
 		separator_1.setBounds(6, 434, 644, 12);
 		frmCrearCliente.getContentPane().add(separator_1);
+		
+		String[] zonaString = { "Caba", "Norte", "Sur" , "Oeste" };
+		comboZona = new JComboBox(zonaString);
+		comboZona.setBounds(350, 395, 300, 27);
+		frmCrearCliente.getContentPane().add(comboZona);
+
+		JLabel lblZona = new JLabel("Zona de envio:");
+		lblZona.setBounds(350, 375, 300, 16);
+		frmCrearCliente.getContentPane().add(lblZona);
+
 
 		lblCuentaCorriente = new JLabel("Cuenta Corriente");
 		lblCuentaCorriente.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
@@ -245,27 +258,29 @@ public class CrearCliente {
 		try {
 			AdministracionDelegate adm = AdministracionDelegate.getInstance();
 
+			String cuilString = txtCuil.getText();
+			long cuil = Long.parseLong(cuilString);
 			String email = txtEmail.getText();
 			String password = txtPasswd.getText();
 			String nombre = txtNombreCompleto.getText();
-			Long cuil = Long.parseLong(txtCuil.getText());
 			String telefono = txtTelefono.getText();
 			String iva = comboCondIVA.getSelectedItem().toString();
 			CondIvaStub condIva = CondIvaStub.getCondIvaFromValue(iva);
 
 			String calle = txtCalle.getText();
-			int numero = Integer.parseInt(txtNumero.getText());
+			String numeroString = txtNumero.getText();
+			long numero = Long.parseLong(numeroString);
 			String codPostal = txtCodigoPostal.getText();
 			String localidad = txtLocalidad.getText();
 			String provincia = comboProvincia.getSelectedItem().toString();
 			Float saldo = Float.parseFloat(txtSaldo.getText());
 			Float limiteCredito = Float.parseFloat(txtLimiteCredito.getText());
+			String zona = comboZona.getSelectedItem().toString();
+			ZonaStub zonaS = ZonaStub.getZonaFromValue(zona);
 
-			//TODO Falta agregar la zona a la ventana y pasarsela. Por ahora le mando cualquiera para cerrar la integracion
-
-			adm.crearCliente(email, password, nombre, cuil, telefono, condIva, calle, numero, codPostal, localidad,
-					provincia, null, saldo, limiteCredito);
-
+	adm.crearCliente(cuil, email, password, nombre, telefono, calle, numero, codPostal, localidad, provincia, condIva, zonaS, saldo, limiteCredito);
+			
+			
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
