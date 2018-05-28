@@ -96,7 +96,7 @@ public class ListarPedidosPendientes {
 
 	private void loadPedidos() {
 		try {
-			List<PedidoStub> pedidosPendientes = AdministracionDelegate.getInstance().getPedidosPendientes();
+			List<PedidoStub> pedidosPendientes = AdministracionDelegate.getInstance().obtenerPedidosPendientes();
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			for (PedidoStub p : pedidosPendientes) {
 				String id = p.getId().toString();
