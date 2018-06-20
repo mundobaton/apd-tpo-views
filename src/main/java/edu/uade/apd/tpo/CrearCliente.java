@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -77,12 +80,65 @@ public class CrearCliente {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frmCrearCliente = new JFrame();
 		frmCrearCliente.setResizable(false);
 		frmCrearCliente.setTitle("Crear Cliente | Das Verrückte Lagerhaus");
 		frmCrearCliente.setBounds(100, 100, 660, 640);
 		frmCrearCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCrearCliente.getContentPane().setLayout(null);
+
+		JMenuBar jmb = new JMenuBar();
+		JMenu jmFile = new JMenu("Menú");
+		JMenuItem listarClientes = new JMenuItem("Listar Clientes");
+		JMenuItem crearUsuario = new JMenuItem("Crear usuario");
+		JMenuItem generarPedido = new JMenuItem("Generar Pedido");
+		JMenuItem listarPedidosPendientes = new JMenuItem("Listar pedidos pendientes");
+		JMenuItem jmiExit = new JMenuItem("Exit");
+		jmFile.add(listarClientes);
+		jmFile.add(crearUsuario);
+		jmFile.add(generarPedido);
+		jmFile.add(listarPedidosPendientes);
+		jmFile.addSeparator();
+		jmFile.add(jmiExit);
+		jmb.add(jmFile);
+
+		listarClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListarClientes listarClientes = new ListarClientes();
+				listarClientes.setVisible(true);
+				frmCrearCliente.dispose();
+			}
+		});
+		
+		listarClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearUsuario crearUsuario = new CrearUsuario();
+				crearUsuario.setVisible(true);
+				frmCrearCliente.dispose();
+			}
+		});
+		
+		listarClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GenerarPedido generarPedido = new GenerarPedido();
+				generarPedido.setVisible(true);
+				frmCrearCliente.dispose();
+			}
+		});
+		
+		listarClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListarPedidosPendientes listarPedidosPendientes = new ListarPedidosPendientes();
+				listarPedidosPendientes.setVisible(true);
+				frmCrearCliente.dispose();
+			}
+		});
+		
+	
+		
+		frmCrearCliente.setJMenuBar(jmb);
+		frmCrearCliente.setVisible(true);
 
 		JLabel lblNombreCompleto = new JLabel("Nombre completo:");
 		lblNombreCompleto.setBounds(6, 62, 300, 16);
@@ -198,8 +254,8 @@ public class CrearCliente {
 		separator_1 = new JSeparator();
 		separator_1.setBounds(6, 434, 644, 12);
 		frmCrearCliente.getContentPane().add(separator_1);
-		
-		String[] zonaString = { "Caba", "Norte", "Sur" , "Oeste" };
+
+		String[] zonaString = { "Caba", "Norte", "Sur", "Oeste" };
 		comboZona = new JComboBox(zonaString);
 		comboZona.setBounds(350, 395, 300, 27);
 		frmCrearCliente.getContentPane().add(comboZona);
@@ -207,7 +263,6 @@ public class CrearCliente {
 		JLabel lblZona = new JLabel("Zona de envio:");
 		lblZona.setBounds(350, 375, 300, 16);
 		frmCrearCliente.getContentPane().add(lblZona);
-
 
 		lblCuentaCorriente = new JLabel("Cuenta Corriente");
 		lblCuentaCorriente.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
@@ -245,10 +300,10 @@ public class CrearCliente {
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(408, 570, 117, 29);
 		frmCrearCliente.getContentPane().add(btnCancelar);
-		
+
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO fix del flujo de navegacion
+				// TODO fix del flujo de navegacion
 				frmCrearCliente.dispose();
 			}
 		});
@@ -276,15 +331,19 @@ public class CrearCliente {
 			Float saldo = Float.parseFloat(txtSaldo.getText());
 			Float limiteCredito = Float.parseFloat(txtLimiteCredito.getText());
 			String zona = comboZona.getSelectedItem().toString();
-			ZonaStub zonaS = ZonaStub.valueOf(zona);
+			ZonaStub zonaS = ZonaStub.fromString(zona);
 
-	adm.crearCliente(cuil, email, password, nombre, telefono, calle, numero, codPostal, localidad, provincia, condIva, zonaS, saldo, limiteCredito);
-			
-			
+			adm.crearCliente(cuil, email, password, nombre, telefono, calle, numero, codPostal, localidad, provincia,
+					condIva, zonaS, saldo, limiteCredito);
+
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
+
+	public void setVisible(boolean isVisible) {
+		this.frmCrearCliente.setVisible(isVisible);
 	}
 
 }

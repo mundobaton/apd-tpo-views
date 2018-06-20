@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
 import java.awt.Font;
 import java.util.Date;
 import java.util.List;
@@ -61,12 +65,65 @@ public class ListarPedidosPendientes {
 		frmListarPedidosPendientes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmListarPedidosPendientes.getContentPane().setLayout(null);
 
+	    JMenuBar jmb = new JMenuBar();
+	    JMenu jmFile = new JMenu("Menú");
+	    JMenuItem crearCliente = new JMenuItem("Crear Cliente");
+	    JMenuItem crearUsuario = new JMenuItem("Crear usuario");
+	    JMenuItem generarPedido = new JMenuItem("Generar Pedido");
+	    JMenuItem listarClientes = new JMenuItem("Listar clientes");
+	    JMenuItem jmiExit = new JMenuItem("Exit");
+	    jmFile.add(crearCliente);
+	    jmFile.add(crearUsuario);
+	    jmFile.add(generarPedido);
+	    jmFile.add(listarClientes);
+	    jmFile.addSeparator();
+	    jmFile.add(jmiExit);
+	    jmb.add(jmFile);
+
+	   
+	    crearCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearCliente crearCliente = new CrearCliente();
+				crearCliente.setVisible(true);
+				frmListarPedidosPendientes.dispose();
+			}
+	    });
+	    
+	    crearUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearUsuario crearUsuario = new CrearUsuario();
+				crearUsuario.setVisible(true);
+				frmListarPedidosPendientes.dispose();
+			}
+		});
+	    
+	    generarPedido.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GenerarPedido generarPedido = new GenerarPedido();
+				generarPedido.setVisible(true);
+				frmListarPedidosPendientes.dispose();
+			}
+		});
+	    
+	    
+	    listarClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListarClientes listarClientes = new ListarClientes();
+				listarClientes.setVisible(true);
+				frmListarPedidosPendientes.dispose();
+			}
+		});
+	    
+	    frmListarPedidosPendientes.setJMenuBar(jmb);
+	    frmListarPedidosPendientes.setVisible(true);
+		
+	    
 		JLabel lblListarPedidosPendientes = new JLabel("Listar Pedidos pendientes");
 		lblListarPedidosPendientes.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		lblListarPedidosPendientes.setBounds(6, 20, 648, 30);
 		frmListarPedidosPendientes.getContentPane().add(lblListarPedidosPendientes);
 
-		String[] columnNames = { "ID", "Fecha de pedido", "Cliente" };
+		String[] columnNames = { "ID", "Fecha de pedido"};
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new Object[][] {}, columnNames) {
 
@@ -93,6 +150,11 @@ public class ListarPedidosPendientes {
 		frmListarPedidosPendientes.getContentPane().add(btnCerrar);
 
 	}
+	
+	
+	public void setVisible(boolean isVisible) {
+		this.frmListarPedidosPendientes.setVisible(isVisible);
+	}
 
 	private void loadPedidos() {
 		try {
@@ -101,7 +163,7 @@ public class ListarPedidosPendientes {
 			for (PedidoStub p : pedidosPendientes) {
 				String id = p.getId().toString();
 				Date fechaPedido = p.getFechaPedido();
-				model.addRow(new Object[] { id, fechaPedido});
+				model.addRow(new Object[] {id, fechaPedido});
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

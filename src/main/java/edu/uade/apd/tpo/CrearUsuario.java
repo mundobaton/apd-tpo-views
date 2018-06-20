@@ -4,6 +4,10 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -51,6 +55,7 @@ public class CrearUsuario {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frmCrearUsuario = new JFrame();
 		frmCrearUsuario.setResizable(true);
 		frmCrearUsuario.setTitle("Crear Usuario | Das Verrückte Lagerhaus");
@@ -58,6 +63,58 @@ public class CrearUsuario {
 		frmCrearUsuario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCrearUsuario.getContentPane().setLayout(null);
 
+		JMenuBar jmb = new JMenuBar();
+		JMenu jmFile = new JMenu("Menú");
+		JMenuItem listarClientes = new JMenuItem("Listar Clientes");
+		JMenuItem crearCliente = new JMenuItem("Crear Cliente");
+		JMenuItem generarPedido = new JMenuItem("Generar Pedido");
+		JMenuItem listarPedidosPendientes = new JMenuItem("Listar pedidos pendientes");
+		JMenuItem jmiExit = new JMenuItem("Exit");
+		jmFile.add(listarClientes);
+		jmFile.add(crearCliente);
+		jmFile.add(generarPedido);
+		jmFile.add(listarPedidosPendientes);
+		jmFile.addSeparator();
+		jmFile.add(jmiExit);
+		jmb.add(jmFile);
+
+		listarClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListarClientes listarClientes = new ListarClientes();
+				listarClientes.setVisible(true);
+				frmCrearUsuario.dispose();
+			}
+		});
+		
+		listarClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearCliente crearCliente = new CrearCliente();
+				crearCliente.setVisible(true);
+				frmCrearUsuario.dispose();
+			}
+		});
+		
+		
+		listarClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GenerarPedido generarPedido = new GenerarPedido();
+				generarPedido.setVisible(true);
+				frmCrearUsuario.dispose();
+			}
+		});
+		
+		listarClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListarPedidosPendientes listarPedidosPendientes = new ListarPedidosPendientes();
+				listarPedidosPendientes.setVisible(true);
+				frmCrearUsuario.dispose();
+			}
+		});
+		
+		
+		frmCrearUsuario.setJMenuBar(jmb);
+		frmCrearUsuario.setVisible(true);
+		
 		JLabel lblEmail = new JLabel("Correo electrónico:");
 		lblEmail.setBounds(6, 87, 300, 16);
 		frmCrearUsuario.getContentPane().add(lblEmail);
@@ -77,7 +134,7 @@ public class CrearUsuario {
 		txtPasswd.setColumns(10);
 
 
-		String[] rolString = { "Todos", "Administración", "Deposito" , "Despacho" , "Factuación" , "Compras", "Cientes"};
+		String[] rolString = { "Todos","Administracion", "Deposito" , "Despacho" , "Facturacion" , "Compras", "Cliente"};
 		comboRol = new JComboBox(rolString);
 		comboRol.setBounds(6, 175, 300, 27);
 		frmCrearUsuario.getContentPane().add(comboRol);
@@ -100,6 +157,7 @@ public class CrearUsuario {
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				guardar();
+				popUpId();
 			}
 		});
 
@@ -129,5 +187,15 @@ public class CrearUsuario {
 			e1.printStackTrace();
 		}
 	}
+	
+	   private void popUpId() {
+	        final JFrame parent = new JFrame();
+	        JOptionPane.showMessageDialog(parent, "El usuario se ha generado con exito");
+
+	    }
+	   
+		public void setVisible(boolean isVisible) {
+			this.frmCrearUsuario.setVisible(isVisible);
+		}
 
 }

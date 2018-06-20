@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
 import java.awt.Font;
 import java.util.List;
 
@@ -51,11 +55,66 @@ public class ListarClientes {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+	
 		frmListarClientes = new JFrame();
 		frmListarClientes.setTitle("Listar Clientes | Das Verrückte Lagerhaus");
 		frmListarClientes.setBounds(100, 100, 660, 440);
 		frmListarClientes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmListarClientes.getContentPane().setLayout(null);
+		
+		frmListarClientes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    JMenuBar jmb = new JMenuBar();
+
+	    JMenu jmFile = new JMenu("Menú");
+	    JMenuItem crearCliente = new JMenuItem("Crear Cliente");
+	    JMenuItem crearUsuario = new JMenuItem("Crear usuario");
+	    JMenuItem generarPedido = new JMenuItem("Generar Pedido");
+	    JMenuItem listarPedidosPendientes = new JMenuItem("Listar pedidos pendientes");
+	    JMenuItem jmiExit = new JMenuItem("Exit");
+	    jmFile.add(crearCliente);
+	    jmFile.add(crearUsuario);
+	    jmFile.add(generarPedido);
+	    jmFile.add(listarPedidosPendientes);
+	    jmFile.addSeparator();
+	    jmFile.add(jmiExit);
+	    jmb.add(jmFile);
+
+	   
+	    crearCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearCliente crearCliente = new CrearCliente();
+				crearCliente.setVisible(true);
+				frmListarClientes.dispose();
+			}
+	    });
+	    
+	    crearUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearUsuario crearUsuario = new CrearUsuario();
+				crearUsuario.setVisible(true);
+				frmListarClientes.dispose();
+			}
+		});
+	    
+	    generarPedido.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GenerarPedido generarPedido = new GenerarPedido();
+				generarPedido.setVisible(true);
+				frmListarClientes.dispose();
+			}
+		});
+	    
+	    
+	    listarPedidosPendientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListarPedidosPendientes listarPedidosPendientes = new ListarPedidosPendientes();
+				listarPedidosPendientes.setVisible(true);
+				frmListarClientes.dispose();
+			}
+		});
+	    
+	    frmListarClientes.setJMenuBar(jmb);
+	    frmListarClientes.setVisible(true);
 		
 		JLabel lblListarClientes = new JLabel("Listar clientes");
 		lblListarClientes.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -109,4 +168,10 @@ public class ListarClientes {
 		}
 		
 	}
-}
+	
+	
+	public void setVisible(boolean isVisible) {
+		this.frmListarClientes.setVisible(isVisible);
+	}
+} 
+
