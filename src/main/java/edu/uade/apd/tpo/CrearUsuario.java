@@ -65,19 +65,10 @@ public class CrearUsuario {
 
 		JMenuBar jmb = new JMenuBar();
 		JMenu jmFile = new JMenu("Menú");
-		JMenuItem listarClientes = new JMenuItem("Listar Clientes");
-		JMenuItem crearCliente = new JMenuItem("Crear Cliente");
-		JMenuItem generarPedido = new JMenuItem("Generar Pedido");
-		JMenuItem listarPedidosPendientes = new JMenuItem("Listar pedidos pendientes");
-		JMenuItem jmiExit = new JMenuItem("Exit");
-		jmFile.add(listarClientes);
-		jmFile.add(crearCliente);
-		jmFile.add(generarPedido);
-		jmFile.add(listarPedidosPendientes);
-		jmFile.addSeparator();
-		jmFile.add(jmiExit);
-		jmb.add(jmFile);
 
+
+		JMenuItem listarClientes = new JMenuItem("Listar Clientes");
+		jmFile.add(listarClientes);
 		listarClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListarClientes listarClientes = new ListarClientes();
@@ -86,6 +77,8 @@ public class CrearUsuario {
 			}
 		});
 		
+		JMenuItem crearCliente = new JMenuItem("Crear Cliente");
+		jmFile.add(crearCliente);
 		listarClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearCliente crearCliente = new CrearCliente();
@@ -94,7 +87,8 @@ public class CrearUsuario {
 			}
 		});
 		
-		
+		JMenuItem generarPedido = new JMenuItem("Generar Pedido");
+		jmFile.add(generarPedido);
 		listarClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GenerarPedido generarPedido = new GenerarPedido();
@@ -103,6 +97,8 @@ public class CrearUsuario {
 			}
 		});
 		
+		JMenuItem listarPedidosPendientes = new JMenuItem("Listar pedidos pendientes");
+		jmFile.add(listarPedidosPendientes);
 		listarClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListarPedidosPendientes listarPedidosPendientes = new ListarPedidosPendientes();
@@ -111,7 +107,8 @@ public class CrearUsuario {
 			}
 		});
 		
-		
+	
+		jmb.add(jmFile);
 		frmCrearUsuario.setJMenuBar(jmb);
 		frmCrearUsuario.setVisible(true);
 		

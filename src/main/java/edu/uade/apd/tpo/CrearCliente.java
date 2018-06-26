@@ -111,7 +111,7 @@ public class CrearCliente {
 			}
 		});
 		
-		listarClientes.addActionListener(new ActionListener() {
+		crearUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearUsuario crearUsuario = new CrearUsuario();
 				crearUsuario.setVisible(true);
@@ -119,7 +119,7 @@ public class CrearCliente {
 			}
 		});
 		
-		listarClientes.addActionListener(new ActionListener() {
+		generarPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GenerarPedido generarPedido = new GenerarPedido();
 				generarPedido.setVisible(true);
@@ -127,7 +127,7 @@ public class CrearCliente {
 			}
 		});
 		
-		listarClientes.addActionListener(new ActionListener() {
+		listarPedidosPendientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListarPedidosPendientes listarPedidosPendientes = new ListarPedidosPendientes();
 				listarPedidosPendientes.setVisible(true);
