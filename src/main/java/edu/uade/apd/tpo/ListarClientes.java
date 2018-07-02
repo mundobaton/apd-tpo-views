@@ -67,7 +67,7 @@ public class ListarClientes {
 		frmListarClientes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    JMenuBar jmb = new JMenuBar();
 
-		JMenu jmFile = new JMenu("Menú");
+	    JMenu jmFile = new JMenu("Menú");
 		JMenuItem listarClientes = new JMenuItem("Listar Clientes");
 		JMenuItem crearCliente = new JMenuItem("Crear Cliente");
 		JMenuItem crearUsuario = new JMenuItem("Crear Usuario");

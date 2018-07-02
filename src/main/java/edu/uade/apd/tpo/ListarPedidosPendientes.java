@@ -72,15 +72,15 @@ public class ListarPedidosPendientes {
 
 		JMenuBar jmb = new JMenuBar();
 		JMenu jmFile = new JMenu("Menú");
+		JMenuItem listarClientes = new JMenuItem("Listar Clientes");
 		JMenuItem crearCliente = new JMenuItem("Crear Cliente");
-		JMenuItem crearUsuario = new JMenuItem("Crear usuario");
-		JMenuItem generarPedido = new JMenuItem("Generar Pedido");
-		JMenuItem listarClientes = new JMenuItem("Listar clientes");
-		JMenuItem jmiExit = new JMenuItem("Exit");
+		JMenuItem crearUsuario = new JMenuItem("Crear Usuario");
+		JMenuItem listarPedidosPendientes = new JMenuItem("Listar pedidos pendientes");
+		JMenuItem jmiExit = new JMenuItem("Salir");
+		jmFile.add(listarClientes);
 		jmFile.add(crearCliente);
 		jmFile.add(crearUsuario);
-		jmFile.add(generarPedido);
-		jmFile.add(listarClientes);
+		jmFile.add(listarPedidosPendientes);
 		jmFile.addSeparator();
 		jmFile.add(jmiExit);
 		jmb.add(jmFile);
