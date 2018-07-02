@@ -219,7 +219,7 @@ public class ListarPedidosPendientes {
 								AdministracionDelegate.getInstance().aprobarPedido(pedido.getId());
 							} else if(response == JOptionPane.NO_OPTION) {
 								jTable1Model.removeRow(row);
-								AdministracionDelegate.getInstance().rechazarPedido(pedido.getId(), "");
+								AdministracionDelegate.getInstance().rechazarPedido(pedido.getId(), "Rechazado por el administrador");
 							}
 
 						} catch (Exception e) {
