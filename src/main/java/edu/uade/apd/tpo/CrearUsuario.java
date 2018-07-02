@@ -88,16 +88,6 @@ public class CrearUsuario {
 			}
 		});
 		
-		JMenuItem generarPedido = new JMenuItem("Generar Pedido");
-		jmFile.add(generarPedido);
-		listarClientes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GenerarPedido generarPedido = new GenerarPedido();
-				generarPedido.setVisible(true);
-				frmCrearUsuario.dispose();
-			}
-		});
-		
 		JMenuItem listarPedidosPendientes = new JMenuItem("Listar pedidos pendientes");
 		jmFile.add(listarPedidosPendientes);
 		listarClientes.addActionListener(new ActionListener() {

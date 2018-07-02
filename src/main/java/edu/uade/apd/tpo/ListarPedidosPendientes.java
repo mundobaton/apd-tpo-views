@@ -55,6 +55,7 @@ public class ListarPedidosPendientes {
 		 */
 		public ListarPedidosPendientes() {
 			initialize();
+			inicializarTabla();
 		}
 
 	/**
@@ -98,16 +99,7 @@ public class ListarPedidosPendientes {
 				crearUsuario.setVisible(true);
 				frmListarPedidosPendientes.dispose();
 			}
-		});
-	    
-	    generarPedido.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GenerarPedido generarPedido = new GenerarPedido();
-				generarPedido.setVisible(true);
-				frmListarPedidosPendientes.dispose();
-			}
-		});
-	    
+		});	    
 	    
 	    listarClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -126,28 +118,25 @@ public class ListarPedidosPendientes {
 		lblListarPedidosPendientes.setBounds(6, 20, 648, 30);
 		frmListarPedidosPendientes.getContentPane().add(lblListarPedidosPendientes);
 
-		Vector<String> datos = new Vector<String>();
-		Vector<String> columnas = new Vector<String>();
-		columnas.add("ID");
-		columnas.add("Fecha de pedido");
-		TableModel jTable1Model = new DefaultTableModel(datos, columnas);
-		List<PedidoDTO> pedidosPendientes;
-		try {
-			pedidosPendientes = AdministracionDelegate.getInstance().obtenerPedidosPendientes();
-			int i = 0;
-			for (PedidoDTO p : pedidosPendientes) {
-				String id = p.getId().toString();
-				String fechaPedido = p.getFechaPedido().toString();
-				jTable1Model.setValueAt(id, i, 0);
-				jTable1Model.setValueAt(fechaPedido, i, 1);
-				i++;
+		String[] columnNames = { "Id", "Fecha de pedido"};
+		table = new JTable();
+		table.setModel(new DefaultTableModel(new Object[][] {}, columnNames) {
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		table = new JTable(jTable1Model);
+
+			@Override
+			public Class<?> getColumnClass(int column) {
+				switch (column) {
+				case 0:
+					return ImageIcon.class;
+				default:
+					return Object.class;
+				}
+			}
+		});
 		table.setAutoCreateRowSorter(true);
 		table.setRowHeight(20);
 
@@ -179,5 +168,39 @@ public class ListarPedidosPendientes {
 	
 	public void setVisible(boolean isVisible) {
 		this.frmListarPedidosPendientes.setVisible(isVisible);
+	}
+	
+	private void inicializarTabla() {
+		DefaultTableModel jTable1Model = (DefaultTableModel) table.getModel();
+		List<PedidoDTO> pedidosPendientes;
+		try {
+			pedidosPendientes = AdministracionDelegate.getInstance().obtenerPedidosPendientes();
+			for (PedidoDTO p : pedidosPendientes) {
+				String id = p.getId().toString();
+				String fechaPedido = p.getFechaPedido().toString();
+				jTable1Model.addRow(new Object[] {id, fechaPedido});
+			}		
+			table.addMouseListener(new java.awt.event.MouseAdapter() {
+				@Override
+				public void mouseClicked(java.awt.event.MouseEvent evt) {
+					int row = table.rowAtPoint(evt.getPoint());
+					int col = table.columnAtPoint(evt.getPoint());
+					if (row >= 0 && col >= 0) {
+						PedidoDTO pedido = pedidosPendientes.get(row);
+						try {
+							AdministracionDelegate.getInstance().aprobarPedido(pedido.getId());
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						frmListarPedidosPendientes.dispose();
+					}
+				}
+			});
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 	}
 }
