@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -118,8 +119,6 @@ public class CrearCliente {
 			}
 		});
 		
-
-		
 		listarPedidosPendientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListarPedidosPendientes listarPedidosPendientes = new ListarPedidosPendientes();
@@ -127,8 +126,6 @@ public class CrearCliente {
 				frmCrearCliente.dispose();
 			}
 		});
-		
-	
 		
 		frmCrearCliente.setJMenuBar(jmb);
 		frmCrearCliente.setVisible(true);
@@ -222,6 +219,7 @@ public class CrearCliente {
 				"Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Río Negro",
 				"Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego",
 				"Tucumán" };
+		
 		comboProvincia = new JComboBox(comboProvString);
 		comboProvincia.setBounds(6, 395, 300, 27);
 		frmCrearCliente.getContentPane().add(comboProvincia);
@@ -293,7 +291,11 @@ public class CrearCliente {
 			Float limiteCredito = Float.parseFloat(txtLimiteCredito.getText());
 		
 			adm.crearCliente(email, nombre, cuil, password, calle, numero, localidad, provincia, codPostal, saldo, limiteCredito);
-		
+			
+			JOptionPane.showMessageDialog(null, "Cliente creado exitosamente");
+			
+			frmCrearCliente.dispose();
+			
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
