@@ -16,8 +16,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import edu.uade.apd.tpo.repository.AdministracionDelegate;
-import edu.uade.apd.tpo.repository.stub.ClienteStub;
+import edu.uade.apd.tpo.repository.delegate.AdministracionDelegate;
+import edu.uade.apd.tpo.repository.dto.ClienteDTO;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -26,6 +27,7 @@ public class ListarClientes {
 
 	private JFrame frmListarClientes;
 	private JTable table;
+	private Long cuit;
 
 	/**
 	 * Launch the application.
@@ -96,14 +98,6 @@ public class ListarClientes {
 			}
 		});
 	    
-	    generarPedido.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GenerarPedido generarPedido = new GenerarPedido();
-				generarPedido.setVisible(true);
-				frmListarClientes.dispose();
-			}
-		});
-	    
 	    
 	    listarPedidosPendientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -121,7 +115,7 @@ public class ListarClientes {
 		lblListarClientes.setBounds(6, 20, 648, 30);
 		frmListarClientes.getContentPane().add(lblListarClientes);
 		
-		String[] columnNames = { "ID", "CUIL", "Nombre", "Saldo", "Límite de Cred."};
+		String[] columnNames = {"CUIT", "Nombre", "Saldo", "Límite de Cred."};
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new Object[][] {}, columnNames) {
 
@@ -151,17 +145,17 @@ public class ListarClientes {
 	
 	private void loadClientes() {
 		try {
-			List<ClienteStub> clientes = AdministracionDelegate.getInstance().getClientes();
-			
+			 List<ClienteDTO> clientes = AdministracionDelegate.getInstance().getClientes();
+					 
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			for(ClienteStub c : clientes) {
-				String id = c.getId().toString();
-				String cuil = c.getCuil().toString();
+			for(ClienteDTO c : clientes) {
+				long cuit = c.getCuit();
 				String nombre = c.getNombre();
 				float saldo = c.getCuentaCorriente().getSaldo();
-				float limite = c.getCuentaCorriente().getLimiteCredito();
-				model.addRow(new Object[] {id, cuil, nombre, "$"+saldo, "$"+limite});
+				float limite = c.getCuentaCorriente().getCredito();
+				model.addRow(new Object[] {cuit, nombre, "$"+saldo, "$"+limite});
 			}
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

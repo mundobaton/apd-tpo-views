@@ -86,13 +86,6 @@ public class Home {
 			}
 		});
 		
-		generarPedido.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GenerarPedido generarPedido = new GenerarPedido();
-				generarPedido.setVisible(true);
-				frmHome.dispose();
-			}
-		});
 		
 		
 		listarPedidosPendientes.addActionListener(new ActionListener() {

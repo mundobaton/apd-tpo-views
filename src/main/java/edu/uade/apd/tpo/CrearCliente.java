@@ -10,9 +10,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import edu.uade.apd.tpo.repository.AdministracionDelegate;
-import edu.uade.apd.tpo.repository.stub.CondIvaStub;
-import edu.uade.apd.tpo.repository.stub.ZonaStub;
+import edu.uade.apd.tpo.repository.delegate.AdministracionDelegate;
+
 
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
@@ -24,7 +23,7 @@ import javax.swing.JButton;
 
 public class CrearCliente {
 
-	private static final float ZonaEnvioStub = 0;
+
 	private JFrame frmCrearCliente;
 	private JTextField txtNombreCompleto;
 	private JTextField txtEmail;
@@ -42,7 +41,6 @@ public class CrearCliente {
 	private JTextField txtLocalidad;
 	private JLabel lblProvincia;
 	private JComboBox comboProvincia;
-	private JComboBox comboCondIVA;
 	private JSeparator separator_1;
 	private JLabel lblCuentaCorriente;
 	private JLabel lblSaldo;
@@ -51,7 +49,7 @@ public class CrearCliente {
 	private JTextField txtLimiteCredito;
 	private JButton btnCancelar;
 	protected Object frmVerDetalleCliente;
-	private JComboBox comboZona;
+
 
 	/**
 	 * Launch the application.
@@ -92,12 +90,10 @@ public class CrearCliente {
 		JMenu jmFile = new JMenu("Menú");
 		JMenuItem listarClientes = new JMenuItem("Listar Clientes");
 		JMenuItem crearUsuario = new JMenuItem("Crear usuario");
-		JMenuItem generarPedido = new JMenuItem("Generar Pedido");
 		JMenuItem listarPedidosPendientes = new JMenuItem("Listar pedidos pendientes");
 		JMenuItem jmiExit = new JMenuItem("Exit");
 		jmFile.add(listarClientes);
 		jmFile.add(crearUsuario);
-		jmFile.add(generarPedido);
 		jmFile.add(listarPedidosPendientes);
 		jmFile.addSeparator();
 		jmFile.add(jmiExit);
@@ -119,13 +115,7 @@ public class CrearCliente {
 			}
 		});
 		
-		generarPedido.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GenerarPedido generarPedido = new GenerarPedido();
-				generarPedido.setVisible(true);
-				frmCrearCliente.dispose();
-			}
-		});
+
 		
 		listarPedidosPendientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -175,25 +165,7 @@ public class CrearCliente {
 		txtCuil.setBounds(350, 82, 300, 26);
 		frmCrearCliente.getContentPane().add(txtCuil);
 		txtCuil.setColumns(10);
-
-		lblTelefono = new JLabel("Teléfono:");
-		lblTelefono.setBounds(6, 180, 300, 16);
-		frmCrearCliente.getContentPane().add(lblTelefono);
-
-		txtTelefono = new JTextField();
-		txtTelefono.setBounds(6, 202, 300, 26);
-		frmCrearCliente.getContentPane().add(txtTelefono);
-		txtTelefono.setColumns(10);
-
-		String[] condIvaString = { "Responsable Inscripto", "Exento", "Consumidor Final" };
-		comboCondIVA = new JComboBox(condIvaString);
-		comboCondIVA.setBounds(350, 203, 300, 27);
-		frmCrearCliente.getContentPane().add(comboCondIVA);
-
-		JLabel lblCondicinIva = new JLabel("Condición IVA:");
-		lblCondicinIva.setBounds(350, 180, 300, 16);
-		frmCrearCliente.getContentPane().add(lblCondicinIva);
-
+	
 		lblCalle = new JLabel("Calle:");
 		lblCalle.setBounds(6, 257, 61, 16);
 		frmCrearCliente.getContentPane().add(lblCalle);
@@ -255,15 +227,6 @@ public class CrearCliente {
 		separator_1.setBounds(6, 434, 644, 12);
 		frmCrearCliente.getContentPane().add(separator_1);
 
-		String[] zonaString = { "Caba", "Norte", "Sur", "Oeste" };
-		comboZona = new JComboBox(zonaString);
-		comboZona.setBounds(350, 395, 300, 27);
-		frmCrearCliente.getContentPane().add(comboZona);
-
-		JLabel lblZona = new JLabel("Zona de envio:");
-		lblZona.setBounds(350, 375, 300, 16);
-		frmCrearCliente.getContentPane().add(lblZona);
-
 		lblCuentaCorriente = new JLabel("Cuenta Corriente");
 		lblCuentaCorriente.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		lblCuentaCorriente.setBounds(6, 458, 644, 20);
@@ -318,23 +281,18 @@ public class CrearCliente {
 			String email = txtEmail.getText();
 			String password = txtPasswd.getText();
 			String nombre = txtNombreCompleto.getText();
-			String telefono = txtTelefono.getText();
-			String iva = comboCondIVA.getSelectedItem().toString();
-			CondIvaStub condIva = CondIvaStub.getCondIvaFromValue(iva);
-
 			String calle = txtCalle.getText();
 			String numeroString = txtNumero.getText();
-			long numero = Long.parseLong(numeroString);
+			int numero = Integer.parseInt(numeroString);
 			String codPostal = txtCodigoPostal.getText();
 			String localidad = txtLocalidad.getText();
 			String provincia = comboProvincia.getSelectedItem().toString();
 			Float saldo = Float.parseFloat(txtSaldo.getText());
 			Float limiteCredito = Float.parseFloat(txtLimiteCredito.getText());
-			String zona = comboZona.getSelectedItem().toString();
-			ZonaStub zonaS = ZonaStub.fromString(zona);
-
-			adm.crearCliente(cuil, email, password, nombre, telefono, calle, numero, codPostal, localidad, provincia,
-					condIva, zonaS, saldo, limiteCredito);
+		
+		
+adm.crearCliente(email, nombre, cuil, password, calle, numero, localidad, provincia, codPostal, saldo, limiteCredito);
+		
 
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
