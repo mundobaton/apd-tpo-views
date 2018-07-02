@@ -88,7 +88,7 @@ public class CrearUsuario {
 			}
 		});
 		
-		listarClientes.addActionListener(new ActionListener() {
+		crearCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearCliente crearCliente = new CrearCliente();
 				crearCliente.setVisible(true);
@@ -96,7 +96,7 @@ public class CrearUsuario {
 			}
 		});
 		
-		listarClientes.addActionListener(new ActionListener() {
+		listarPedidosPendientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListarPedidosPendientes listarPedidosPendientes = new ListarPedidosPendientes();
 				listarPedidosPendientes.setVisible(true);
