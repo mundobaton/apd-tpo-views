@@ -151,16 +151,6 @@ public class ListarPedidosPendientes {
 		});
 		btnCerrar.setBounds(517, 309, 117, 29);
 		frmListarPedidosPendientes.getContentPane().add(btnCerrar);
-
-		JButton btnAprobar = new JButton("Aprobar");
-		btnAprobar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-			}
-		});
-		btnAprobar.setBounds(6, 309, 117, 29);
-		frmListarPedidosPendientes.getContentPane().add(btnAprobar);
-
 	}
 
 	public void setVisible(boolean isVisible) {
