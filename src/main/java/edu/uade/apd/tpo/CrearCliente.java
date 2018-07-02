@@ -282,18 +282,15 @@ public class CrearCliente {
 			String password = txtPasswd.getText();
 			String nombre = txtNombreCompleto.getText();
 			String calle = txtCalle.getText();
-			String numeroString = txtNumero.getText();
-			int numero = Integer.parseInt(numeroString);
+			String numero = txtNumero.getText();
 			String codPostal = txtCodigoPostal.getText();
 			String localidad = txtLocalidad.getText();
 			String provincia = comboProvincia.getSelectedItem().toString();
 			Float saldo = Float.parseFloat(txtSaldo.getText());
 			Float limiteCredito = Float.parseFloat(txtLimiteCredito.getText());
 		
-		
 			adm.crearCliente(email, nombre, cuil, password, calle, numero, localidad, provincia, codPostal, saldo, limiteCredito);
 		
-
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
