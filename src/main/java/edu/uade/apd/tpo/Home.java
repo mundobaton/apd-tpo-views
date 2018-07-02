@@ -4,11 +4,13 @@ import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -46,7 +48,7 @@ public class Home {
 		frmHome = new JFrame();
 		frmHome.setResizable(false);
 		frmHome.setTitle("Das Verrückte Lagerhaus");
-		frmHome.setBounds(100, 100, 660, 640);
+		frmHome.setBounds(100, 100, 660, 500);
 		frmHome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmHome.getContentPane().setLayout(null);
 
@@ -64,6 +66,11 @@ public class Home {
 		jmFile.addSeparator();
 		jmFile.add(jmiExit);
 		jmb.add(jmFile);
+		
+		String path = new File("src/main/resources/logo.png").getAbsolutePath();
+		JLabel lbl = new JLabel(new ImageIcon(path));
+		lbl.setBounds(180, 30, 300, 191);
+		frmHome.getContentPane().add(lbl);
 
 		listarClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
