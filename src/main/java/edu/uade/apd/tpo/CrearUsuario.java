@@ -149,6 +149,8 @@ public class CrearUsuario {
 			public void actionPerformed(ActionEvent e) {
 				guardar();
 				popUpId();
+				Home home = new Home();
+				home.setVisible(true);
 			}
 		});
 
@@ -158,6 +160,8 @@ public class CrearUsuario {
 		
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Home home = new Home();
+				home.setVisible(true);
 				frmCrearUsuario.dispose();
 			}
 		});

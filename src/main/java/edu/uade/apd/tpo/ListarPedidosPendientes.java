@@ -146,6 +146,8 @@ public class ListarPedidosPendientes {
 		JButton btnCerrar = new JButton("Cerrar");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Home home = new Home();
+				home.setVisible(true);
 				frmListarPedidosPendientes.dispose();
 			}
 		});

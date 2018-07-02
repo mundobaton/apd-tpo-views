@@ -258,6 +258,10 @@ public class CrearCliente {
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				guardar();
+				Home home = new Home();
+				home.setVisible(true);
+				frmCrearCliente.dispose();
+				
 			}
 		});
 
@@ -267,7 +271,8 @@ public class CrearCliente {
 
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO fix del flujo de navegacion
+				Home home = new Home();
+				home.setVisible(true);
 				frmCrearCliente.dispose();
 			}
 		});

@@ -135,6 +135,8 @@ public class ListarClientes {
 		JButton btnCerrar = new JButton("Cerrar");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Home home = new Home();
+				home.setVisible(true);
 				frmListarClientes.dispose();
 			}
 		});
