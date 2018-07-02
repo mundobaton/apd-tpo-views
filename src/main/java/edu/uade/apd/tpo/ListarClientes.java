@@ -67,19 +67,19 @@ public class ListarClientes {
 		frmListarClientes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    JMenuBar jmb = new JMenuBar();
 
-	    JMenu jmFile = new JMenu("Menú");
-	    JMenuItem crearCliente = new JMenuItem("Crear Cliente");
-	    JMenuItem crearUsuario = new JMenuItem("Crear usuario");
-	    JMenuItem generarPedido = new JMenuItem("Generar Pedido");
-	    JMenuItem listarPedidosPendientes = new JMenuItem("Listar pedidos pendientes");
-	    JMenuItem jmiExit = new JMenuItem("Exit");
-	    jmFile.add(crearCliente);
-	    jmFile.add(crearUsuario);
-	    jmFile.add(generarPedido);
-	    jmFile.add(listarPedidosPendientes);
-	    jmFile.addSeparator();
-	    jmFile.add(jmiExit);
-	    jmb.add(jmFile);
+		JMenu jmFile = new JMenu("Menú");
+		JMenuItem listarClientes = new JMenuItem("Listar Clientes");
+		JMenuItem crearCliente = new JMenuItem("Crear Cliente");
+		JMenuItem crearUsuario = new JMenuItem("Crear Usuario");
+		JMenuItem listarPedidosPendientes = new JMenuItem("Listar pedidos pendientes");
+		JMenuItem jmiExit = new JMenuItem("Salir");
+		jmFile.add(listarClientes);
+		jmFile.add(crearCliente);
+		jmFile.add(crearUsuario);
+		jmFile.add(listarPedidosPendientes);
+		jmFile.addSeparator();
+		jmFile.add(jmiExit);
+		jmb.add(jmFile);
 
 	   
 	    crearCliente.addActionListener(new ActionListener() {

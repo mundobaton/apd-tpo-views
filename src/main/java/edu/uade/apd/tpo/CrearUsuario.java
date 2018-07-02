@@ -65,11 +65,21 @@ public class CrearUsuario {
 		frmCrearUsuario.getContentPane().setLayout(null);
 
 		JMenuBar jmb = new JMenuBar();
+
 		JMenu jmFile = new JMenu("Menú");
-
-
 		JMenuItem listarClientes = new JMenuItem("Listar Clientes");
+		JMenuItem crearCliente = new JMenuItem("Crear Cliente");
+		JMenuItem crearUsuario = new JMenuItem("Crear Usuario");
+		JMenuItem listarPedidosPendientes = new JMenuItem("Listar pedidos pendientes");
+		JMenuItem jmiExit = new JMenuItem("Salir");
 		jmFile.add(listarClientes);
+		jmFile.add(crearCliente);
+		jmFile.add(crearUsuario);
+		jmFile.add(listarPedidosPendientes);
+		jmFile.addSeparator();
+		jmFile.add(jmiExit);
+		jmb.add(jmFile);
+
 		listarClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListarClientes listarClientes = new ListarClientes();
@@ -78,8 +88,6 @@ public class CrearUsuario {
 			}
 		});
 		
-		JMenuItem crearCliente = new JMenuItem("Crear Cliente");
-		jmFile.add(crearCliente);
 		listarClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearCliente crearCliente = new CrearCliente();
@@ -88,8 +96,6 @@ public class CrearUsuario {
 			}
 		});
 		
-		JMenuItem listarPedidosPendientes = new JMenuItem("Listar pedidos pendientes");
-		jmFile.add(listarPedidosPendientes);
 		listarClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListarPedidosPendientes listarPedidosPendientes = new ListarPedidosPendientes();
@@ -98,8 +104,6 @@ public class CrearUsuario {
 			}
 		});
 		
-	
-		jmb.add(jmFile);
 		frmCrearUsuario.setJMenuBar(jmb);
 		frmCrearUsuario.setVisible(true);
 		

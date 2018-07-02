@@ -55,13 +55,11 @@ public class Home {
 		JMenuItem listarClientes = new JMenuItem("Listar Clientes");
 		JMenuItem crearCliente = new JMenuItem("Crear Cliente");
 		JMenuItem crearUsuario = new JMenuItem("Crear Usuario");
-		// JMenuItem generarPedido = new JMenuItem("Generar Pedido");
 		JMenuItem listarPedidosPendientes = new JMenuItem("Listar pedidos pendientes");
 		JMenuItem jmiExit = new JMenuItem("Salir");
 		jmFile.add(listarClientes);
 		jmFile.add(crearCliente);
 		jmFile.add(crearUsuario);
-		// jmFile.add(generarPedido);
 		jmFile.add(listarPedidosPendientes);
 		jmFile.addSeparator();
 		jmFile.add(jmiExit);
