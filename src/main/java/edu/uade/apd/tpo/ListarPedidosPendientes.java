@@ -207,12 +207,19 @@ public class ListarPedidosPendientes {
 					if (row >= 0 && col >= 0) {
 						PedidoDTO pedido = pedidosPendientes.get(row);
 						try {
-							int response = JOptionPane.showConfirmDialog(null, "¿Desea aprobar el pedido?",
-									"Aprobar Pedido", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+							Object[] options = {
+									"Aprobar",
+									"Rechazar",
+									"Cancelar"
+							};
+							int response = JOptionPane.showOptionDialog(null, "¿Desea aprobar el pedido?",
+									"Aprobar Pedido", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 							if (response == JOptionPane.YES_OPTION) {
 								jTable1Model.removeRow(row);
 								AdministracionDelegate.getInstance().aprobarPedido(pedido.getId());
-								
+							} else if(response == JOptionPane.NO_OPTION) {
+								jTable1Model.removeRow(row);
+								AdministracionDelegate.getInstance().rechazarPedido(pedido.getId(), "");
 							}
 
 						} catch (Exception e) {
