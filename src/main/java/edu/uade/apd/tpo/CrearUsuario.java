@@ -122,7 +122,7 @@ public class CrearUsuario {
 		txtPasswd.setColumns(10);
 
 
-		String[] rolString = { "Todos","Administracion", "Deposito" , "Despacho" , "Facturacion" , "Compras", "Cliente"};
+		String[] rolString = {"Administracion", "Deposito" , "Despacho" , "Facturacion" , "Compras"};
 		comboRol = new JComboBox(rolString);
 		comboRol.setBounds(6, 175, 300, 27);
 		frmCrearUsuario.getContentPane().add(comboRol);
@@ -167,7 +167,7 @@ public class CrearUsuario {
 			String email = txtEmail.getText();
 			String password = txtPasswd.getText();
 			String rolString = comboRol.getSelectedItem().toString();
-			RolDTO rol = RolDTO.valueOf(rolString);
+			RolDTO rol = RolDTO.valueOf(rolString.toUpperCase());
 			adm.crearUsuario(email, password, rol);
 		} catch (Exception e1) {
 			e1.printStackTrace();
