@@ -129,8 +129,6 @@ public class ListarPedidosPendientes {
 			@Override
 			public Class<?> getColumnClass(int column) {
 				switch (column) {
-				case 0:
-					return ImageIcon.class;
 				default:
 					return Object.class;
 				}
@@ -168,7 +166,7 @@ public class ListarPedidosPendientes {
 	public void setVisible(boolean isVisible) {
 		this.frmListarPedidosPendientes.setVisible(isVisible);
 	}
-	
+
 	private void actualizarTabla() {
 		DefaultTableModel jTable1Model = (DefaultTableModel) table.getModel();
 		List<PedidoDTO> pedidosPendientes;
@@ -176,7 +174,7 @@ public class ListarPedidosPendientes {
 			pedidosPendientes = AdministracionDelegate.getInstance().obtenerPedidosPendientes();
 			if (pedidosPendientes != null) {
 				for (PedidoDTO p : pedidosPendientes) {
-					String id = p.getId().toString();
+					long id = p.getId().longValue();
 					String cliente = p.getCliente().getNombre();
 					String estado = p.getEstado().getName();
 					jTable1Model.addRow(new Object[] { id, cliente, estado });
@@ -209,18 +207,18 @@ public class ListarPedidosPendientes {
 					if (row >= 0 && col >= 0) {
 						PedidoDTO pedido = pedidosPendientes.get(row);
 						try {
-							int response = JOptionPane.showConfirmDialog(null, "¿Desea aprobar el pedido?", "Aprobar Pedido",
-									JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+							int response = JOptionPane.showConfirmDialog(null, "¿Desea aprobar el pedido?",
+									"Aprobar Pedido", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 							if (response == JOptionPane.YES_OPTION) {
+								jTable1Model.removeRow(row);
 								AdministracionDelegate.getInstance().aprobarPedido(pedido.getId());
-								jTable1Model.fireTableDataChanged();
+								
 							}
-							
+
 						} catch (Exception e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						//frmListarPedidosPendientes.dispose();
+						
 					}
 				}
 			});
