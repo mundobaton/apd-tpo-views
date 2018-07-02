@@ -11,8 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import edu.uade.apd.tpo.repository.AdministracionDelegate;
-import edu.uade.apd.tpo.repository.stub.RolStub;
+import edu.uade.apd.tpo.repository.delegate.AdministracionDelegate;
+import edu.uade.apd.tpo.repository.dto.RolDTO;
+
 import javax.swing.JComboBox;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -59,7 +60,7 @@ public class CrearUsuario {
 		frmCrearUsuario = new JFrame();
 		frmCrearUsuario.setResizable(true);
 		frmCrearUsuario.setTitle("Crear Usuario | Das Verrückte Lagerhaus");
-		frmCrearUsuario.setBounds(90, 90, 660, 640);
+		frmCrearUsuario.setBounds(90, 90, 663, 392);
 		frmCrearUsuario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCrearUsuario.getContentPane().setLayout(null);
 
@@ -112,9 +113,9 @@ public class CrearUsuario {
 		frmCrearUsuario.setJMenuBar(jmb);
 		frmCrearUsuario.setVisible(true);
 		
-		JLabel lblEmail = new JLabel("Correo electrónico:");
-		lblEmail.setBounds(6, 87, 300, 16);
-		frmCrearUsuario.getContentPane().add(lblEmail);
+		JLabel lblLegajo = new JLabel("Legajo:");
+		lblLegajo.setBounds(6, 87, 300, 16);
+		frmCrearUsuario.getContentPane().add(lblLegajo);
 
 		txtEmail = new JTextField();
 		txtEmail.setBounds(6, 115, 300, 26);
@@ -148,7 +149,7 @@ public class CrearUsuario {
 
 
 		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(537, 570, 117, 29);
+		btnGuardar.setBounds(521, 174, 117, 29);
 		frmCrearUsuario.getContentPane().add(btnGuardar);
 
 		btnGuardar.addActionListener(new ActionListener() {
@@ -159,7 +160,7 @@ public class CrearUsuario {
 		});
 
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(408, 570, 117, 29);
+		btnCancelar.setBounds(338, 174, 117, 29);
 		frmCrearUsuario.getContentPane().add(btnCancelar);
 		
 		btnCancelar.addActionListener(new ActionListener() {
@@ -173,26 +174,22 @@ public class CrearUsuario {
 	private void guardar() {
 		try {
 			AdministracionDelegate adm = AdministracionDelegate.getInstance();
-			
 			String email = txtEmail.getText();
 			String password = txtPasswd.getText();
 			String rolString = comboRol.getSelectedItem().toString();
-			RolStub rol = RolStub.getRolFromValue(rolString);
+			RolDTO rol = RolDTO.valueOf(rolString);
 			adm.crearUsuario(email, password, rol);
-
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 	}
 	
-	   private void popUpId() {
-	        final JFrame parent = new JFrame();
-	        JOptionPane.showMessageDialog(parent, "El usuario se ha generado con exito");
-
-	    }
+	private void popUpId() {
+		final JFrame parent = new JFrame();
+	    JOptionPane.showMessageDialog(parent, "El usuario se ha generado con exito");
+    }
 	   
-		public void setVisible(boolean isVisible) {
+	public void setVisible(boolean isVisible) {
 			this.frmCrearUsuario.setVisible(isVisible);
-		}
-
+	}
 }

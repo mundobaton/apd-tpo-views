@@ -13,14 +13,17 @@ import javax.swing.JMenuItem;
 import java.awt.Font;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
-import edu.uade.apd.tpo.repository.AdministracionDelegate;
-import edu.uade.apd.tpo.repository.stub.ClienteStub;
-import edu.uade.apd.tpo.repository.stub.PedidoStub;
+import edu.uade.apd.tpo.repository.delegate.AdministracionDelegate;
+import edu.uade.apd.tpo.repository.dto.PedidoDTO;
+import edu.uade.apd.tpo.repository.exception.RemoteBusinessException;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -52,12 +55,12 @@ public class ListarPedidosPendientes {
 		 */
 		public ListarPedidosPendientes() {
 			initialize();
-			loadPedidos();
 		}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings("serial")
 	private void initialize() {
 		frmListarPedidosPendientes = new JFrame();
 		frmListarPedidosPendientes.setTitle("Listar Pedidos pendientes | Das Verrückte Lagerhaus");
@@ -123,52 +126,58 @@ public class ListarPedidosPendientes {
 		lblListarPedidosPendientes.setBounds(6, 20, 648, 30);
 		frmListarPedidosPendientes.getContentPane().add(lblListarPedidosPendientes);
 
-		String[] columnNames = { "ID", "Fecha de pedido"};
-		table = new JTable();
-		table.setModel(new DefaultTableModel(new Object[][] {}, columnNames) {
-
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false;
+		Vector<String> datos = new Vector<String>();
+		Vector<String> columnas = new Vector<String>();
+		columnas.add("ID");
+		columnas.add("Fecha de pedido");
+		TableModel jTable1Model = new DefaultTableModel(datos, columnas);
+		List<PedidoDTO> pedidosPendientes;
+		try {
+			pedidosPendientes = AdministracionDelegate.getInstance().obtenerPedidosPendientes();
+			int i = 0;
+			for (PedidoDTO p : pedidosPendientes) {
+				String id = p.getId().toString();
+				String fechaPedido = p.getFechaPedido().toString();
+				jTable1Model.setValueAt(id, i, 0);
+				jTable1Model.setValueAt(fechaPedido, i, 1);
+				i++;
 			}
-		});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		table = new JTable(jTable1Model);
 		table.setAutoCreateRowSorter(true);
 		table.setRowHeight(20);
 
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(6, 62, 648, 300);
+		scrollPane.setBounds(6, 62, 648, 236);
 		table.setFillsViewportHeight(true);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		frmListarPedidosPendientes.getContentPane().add(scrollPane);
-
+		
 		JButton btnCerrar = new JButton("Cerrar");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmListarPedidosPendientes.dispose();
 			}
 		});
-		btnCerrar.setBounds(537, 374, 117, 29);
+		btnCerrar.setBounds(517, 309, 117, 29);
 		frmListarPedidosPendientes.getContentPane().add(btnCerrar);
+		
+		JButton btnAprobar = new JButton("Aprobar");
+		btnAprobar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		btnAprobar.setBounds(6, 309, 117, 29);
+		frmListarPedidosPendientes.getContentPane().add(btnAprobar);
 
 	}
-	
 	
 	public void setVisible(boolean isVisible) {
 		this.frmListarPedidosPendientes.setVisible(isVisible);
-	}
-
-	private void loadPedidos() {
-		try {
-			List<PedidoStub> pedidosPendientes = AdministracionDelegate.getInstance().obtenerPedidosPendientes();
-			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			for (PedidoStub p : pedidosPendientes) {
-				String id = p.getId().toString();
-				Date fechaPedido = p.getFechaPedido();
-				model.addRow(new Object[] {id, fechaPedido});
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 }
