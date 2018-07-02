@@ -103,6 +103,13 @@ public class Home {
 				frmHome.dispose();
 			}
 		});
+		
+		jmiExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmHome.dispose();
+			}
+		});
+		
 		frmHome.setJMenuBar(jmb);
 		frmHome.setVisible(true);
 

@@ -127,6 +127,12 @@ public class CrearCliente {
 			}
 		});
 		
+		jmiExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmCrearCliente.dispose();
+			}
+		});
+		
 		frmCrearCliente.setJMenuBar(jmb);
 		frmCrearCliente.setVisible(true);
 

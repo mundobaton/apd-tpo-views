@@ -79,6 +79,12 @@ public class CrearUsuario {
 		jmFile.addSeparator();
 		jmFile.add(jmiExit);
 		jmb.add(jmFile);
+		
+		jmiExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmCrearUsuario.dispose();
+			}
+		});
 
 		listarClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

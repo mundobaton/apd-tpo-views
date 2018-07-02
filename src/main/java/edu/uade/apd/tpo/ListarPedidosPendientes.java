@@ -84,6 +84,12 @@ public class ListarPedidosPendientes {
 		jmFile.addSeparator();
 		jmFile.add(jmiExit);
 		jmb.add(jmFile);
+		
+		jmiExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmListarPedidosPendientes.dispose();
+			}
+		});
 
 		crearCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

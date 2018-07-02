@@ -81,6 +81,11 @@ public class ListarClientes {
 		jmFile.add(jmiExit);
 		jmb.add(jmFile);
 
+		jmiExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmListarClientes.dispose();
+			}
+		});
 	   
 	    crearCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
