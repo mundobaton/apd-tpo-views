@@ -292,16 +292,19 @@ public class CrearCliente {
 		
 			adm.crearCliente(email, nombre, cuil, password, calle, numero, localidad, provincia, codPostal, saldo, limiteCredito);
 			
-			JOptionPane.showMessageDialog(null, "Cliente creado exitosamente");
-			
-			frmCrearCliente.dispose();
+			popUpId();
 			
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
-
+	
+	private void popUpId() {
+		final JFrame parent = new JFrame();
+	    JOptionPane.showMessageDialog(parent, "El cliente se ha generado con exito");
+    }
+	
 	public void setVisible(boolean isVisible) {
 		this.frmCrearCliente.setVisible(isVisible);
 	}

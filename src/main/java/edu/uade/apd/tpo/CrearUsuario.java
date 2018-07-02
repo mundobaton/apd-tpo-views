@@ -125,7 +125,6 @@ public class CrearUsuario {
 		frmCrearUsuario.getContentPane().add(txtPasswd);
 		txtPasswd.setColumns(10);
 
-
 		String[] rolString = {"Administracion", "Deposito" , "Despacho" , "Facturacion" , "Compras"};
 		comboRol = new JComboBox(rolString);
 		comboRol.setBounds(6, 175, 300, 27);
@@ -159,7 +158,6 @@ public class CrearUsuario {
 		
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				frmCrearUsuario.dispose();
 			}
 		});
@@ -173,6 +171,7 @@ public class CrearUsuario {
 			String rolString = comboRol.getSelectedItem().toString();
 			RolDTO rol = RolDTO.valueOf(rolString.toUpperCase());
 			adm.crearUsuario(email, password, rol);
+			
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
